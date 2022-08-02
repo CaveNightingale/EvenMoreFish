@@ -35,7 +35,7 @@ public class SellGUI implements InventoryHolder {
 
     public int guiSize;
 
-    private ItemStack sellIcon, sellAllIcon, filler, errorFiller, confirmIcon, confirmSellAllIcon, noValueIcon, sellAllErrorIcon;
+    private ItemStack sellIcon, sellAllIcon, filler, errorFiller, confirmIcon, confirmSellAllIcon, noValueIcon, sellAllErrorIcon, baitShopIcon;
 
     public SellGUI(Player p) {
         this.guiSize = (EvenMoreFish.mainConfig.getGUISize()+1)*9;
@@ -46,6 +46,7 @@ public class SellGUI implements InventoryHolder {
         addFiller(filler);
         setSellItem();
         setSellAllItem();
+        setBaitShopItem();
         this.player.openInventory(menu);
     }
 
@@ -136,6 +137,17 @@ public class SellGUI implements InventoryHolder {
         menu.setItem(guiSize - (10 - EvenMoreFish.mainConfig.getSellSlot()), this.sellIcon);
     }
 
+    public void setBaitShopItem() {
+        ItemStack baitShop = new ItemStack(EvenMoreFish.mainConfig.getBaitShopMaterial());
+        ItemMeta bMeta = baitShop.getItemMeta();
+        bMeta.setDisplayName(new Message(ConfigMessage.WORTH_GUI_BAIT_SHOP_NAME).getRawMessage(true, false));
+        bMeta.setLore(Arrays.asList(new Message(ConfigMessage.WORTH_GUI_BAIT_SHOP_LORE).getRawMessage(true, false).split("\n")));
+        baitShop.setItemMeta(bMeta);
+        glowify(baitShop);
+        this.baitShopIcon = WorthNBT.attributeDefault(baitShop);
+        this.menu.setItem(guiSize - (10 - EvenMoreFish.mainConfig.getBaitShopSlot()), this.baitShopIcon);
+    }
+
     /**
      * Resets the glass colour to the default one after the error glass has been used due to a value of $0 in the shop.
      * This prevents the red from hanging when the gold ingot / raw fish cod have returned.
@@ -166,6 +178,10 @@ public class SellGUI implements InventoryHolder {
 
     public ItemStack getSellAllErrorIcon() {
         return this.sellAllErrorIcon;
+    }
+
+    public ItemStack getBaitShopIcon() {
+        return baitShopIcon;
     }
 
     public void createIcon(boolean sellAll) {
@@ -199,8 +215,10 @@ public class SellGUI implements InventoryHolder {
             else confirm = new ItemStack(Material.valueOf(EvenMoreFish.mainConfig.getSellItemConfirm()));
 
             ItemMeta cMeta = confirm.getItemMeta();
-            if (sellAll) cMeta.setDisplayName(new Message(ConfigMessage.WORTH_GUI_CONFIRM_ALL_BUTTON_NAME).getRawMessage(true, false));
-            else cMeta.setDisplayName(new Message(ConfigMessage.WORTH_GUI_CONFIRM_BUTTON_NAME).getRawMessage(true, false));
+            if (sellAll)
+                cMeta.setDisplayName(new Message(ConfigMessage.WORTH_GUI_CONFIRM_ALL_BUTTON_NAME).getRawMessage(true, false));
+            else
+                cMeta.setDisplayName(new Message(ConfigMessage.WORTH_GUI_CONFIRM_BUTTON_NAME).getRawMessage(true, false));
             // Generates the lore, looping through each line in messages.yml lore thingy, and generating it
             List<String> lore = new ArrayList<>();
 
@@ -226,6 +244,7 @@ public class SellGUI implements InventoryHolder {
     }
 
     public void setIcon(boolean sellAll) {
+        this.menu.setItem(guiSize - (10 - EvenMoreFish.mainConfig.getBaitShopSlot()), this.baitShopIcon);
         if (this.error) {
             if (sellAll) {
                 this.menu.setItem(guiSize - (10 - EvenMoreFish.mainConfig.getSellAllSlot()), this.sellAllErrorIcon);

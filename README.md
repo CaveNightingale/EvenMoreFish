@@ -1,3 +1,5 @@
+This is a customized version for a server and it's not recommended to develop base on this.
+这是为一个服务器编写的定制版本，不建议基于此版本开发。
 # 🐠 EvenMoreFish Spigot Plugin 🐟
 
 Improve your server's fishing experience with an incredible **fishing competition plugin** based on elsiff's MoreFish plugin

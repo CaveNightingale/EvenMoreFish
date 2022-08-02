@@ -1,6 +1,7 @@
 package com.oheers.fish.selling;
 
 import com.oheers.fish.EvenMoreFish;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
@@ -24,6 +25,14 @@ public class InteractHandler implements Listener {
     public void interact(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         InventoryHolder holder = inventory.getHolder();
+        Inventory inventory1 = event.getClickedInventory();
+        InventoryHolder holder1 = inventory1 == null ? null : inventory1.getHolder();
+        if(holder1 instanceof BuyGUI && event.getWhoClicked() instanceof Player) {
+            event.setCancelled(true);
+            ((BuyGUI) holder1).playerBuy((Player) event.getWhoClicked(), event.getSlot());
+        } else if(holder instanceof BuyGUI) {
+            event.setCancelled(true);
+        }
         // is the player viewing a SellGUI gui?
         if (!(holder instanceof SellGUI)) {
             return;
@@ -86,6 +95,9 @@ public class InteractHandler implements Listener {
                     gui.sell(false);
                     gui.close();
                 }
+            } else if(clickedItem.isSimilar(gui.getBaitShopIcon())) {
+                event.setCancelled(true);
+                new BuyGUI(gui.getPlayer());
             } else if (clickedItem.isSimilar(gui.getFiller()) || clickedItem.isSimilar(gui.getErrorFiller())) {
                 event.setCancelled(true);
             } else {

@@ -1,5 +1,7 @@
 package com.oheers.fish.config.messages;
 
+import org.bukkit.ChatColor;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -152,7 +154,16 @@ public enum ConfigMessage {
 			"",
 			"&e» (Left-click) sell the fish.",
 			"&7» (Right-click) cancel."
-	), PrefixType.NONE, false, false);
+	), PrefixType.NONE, false, false),
+	WORTH_GUI_BAIT_SHOP_NAME("worth-bait-shop-gui-name", "&6&lBAIT SHOP", PrefixType.NONE, false, false),
+	WORTH_GUI_BAIT_SHOP_LORE("worth-bait-shop-gui-lore", Arrays.asList(
+			"&8Go To Bait Shop",
+			"",
+			"&e» (Left-click) open Bait Shop."
+	), PrefixType.NONE, false, false),
+	BAIT_SHOP_GUI_NAME("bait-shop-gui-name", "&5&lBAIT SHOP", PrefixType.NONE, false, false),
+	BAIT_SHOP_GUI_PRICE("bait-shop-gui-price", Arrays.asList("Price: &e${sell-price}"), PrefixType.NONE, false, false),
+	BAIT_SHOP_GUI_PRICE_CANT_AFFORD("bait-shop-gui-price-cant-afford", Arrays.asList("Price: &e${sell-price} &c - You can't afford that."), PrefixType.NONE, false, false);
 
 	private final String id;
 	private String normal;

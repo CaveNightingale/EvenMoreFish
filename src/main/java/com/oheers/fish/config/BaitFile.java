@@ -123,4 +123,8 @@ public class BaitFile {
 	public int getDropQuantity(String baitName) {
 		return baitConfig.getInt("baits." + baitName + ".drop-quantity", 1);
 	}
+
+	public double getBaitPrice(String bait) {
+		return baitConfig.getDouble("baits." + bait + ".price");
+	}
 }

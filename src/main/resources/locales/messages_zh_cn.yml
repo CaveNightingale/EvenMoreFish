@@ -207,6 +207,20 @@ toggle-on: "&a现在你将捕捉到自定义的鱼。"
 # 当试图放置一个skull-fish时阻止
 place-fish-blocked: "&c你不能放置这条鱼。"
 
+worth-bait-shop-gui-name: "&6&l购买鱼饵"
+
+worth-bait-shop-gui-lore:
+  - "&8前往鱼饵商店"
+  - ""
+  - "&e» (左键) 打开鱼饵商店"
+bait-shop-gui-name: "&6&l鱼饵商店"
+
+bait-shop-gui-price:
+  - "价格» &e${sell-price}"
+
+bait-shop-gui-price-cant-afford:
+  - "价格» &e${sell-price} &c - 你没有足够的钱"
+
 admin:
   # 为另一个玩家打开一个钓鱼商店
   open-fish-shop: "&a为玩家{player}打开了钓鱼商店."

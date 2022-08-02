@@ -20,6 +20,7 @@ baits:
     application-weight: 150
     # How many of this bait can be applied to a rod at once?
     max-baits: 100
+    price: 20
 
   Fresh Water:
     item:
@@ -35,6 +36,7 @@ baits:
     catch-weight: 2
     application-weight: 5
     max-baits: 64
+    price: 40
 
   Epic Elixir:
     item:
@@ -42,6 +44,7 @@ baits:
     glowing: true
     application-weight: 7
     max-baits: 64
+    price: 80
 
   Stringy Worms:
     item:
@@ -53,6 +56,7 @@ baits:
     catch-weight: 20
     application-weight: 40
     max-baits: 16
+    price: 160
 
   Legendary Lure:
     item:
@@ -64,6 +68,7 @@ baits:
     catch-weight: 2
     application-weight: 40
     max-baits: 20
+    price: 240
 
 general:
   # This defines the multiplier for how frequently a rarity/fish appears.

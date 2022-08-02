@@ -182,6 +182,18 @@ public class MainConfig {
         return Material.SALMON_BUCKET;
     }
 
+    public Material getBaitShopMaterial() {
+        String s = config.getString("gui.bait-shop");
+        if (s != null) {
+            try {
+                return Material.valueOf(s);
+            } catch (IllegalArgumentException exception) {
+                EvenMoreFish.logger.log(Level.SEVERE, s + " is not a valid material type in config.yml gui.bait-shop");
+            }
+        }
+        return Material.HONEY_BOTTLE;
+    }
+
     public int getSellAllSlot() {
         int returning = config.getInt("gui.sell-all-slot");
         if (returning > 9 || returning < 1) return 6;
@@ -191,6 +203,12 @@ public class MainConfig {
     public int getSellSlot() {
         int returning = config.getInt("gui.sell-slot");
         if (returning > 9 || returning < 1) return 4;
+        else return returning;
+    }
+
+    public int getBaitShopSlot() {
+        int returning = config.getInt("gui.bait-shop-slot");
+        if (returning > 9 || returning < 1) return 9;
         else return returning;
     }
 
